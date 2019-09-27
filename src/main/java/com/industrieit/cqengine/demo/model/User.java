@@ -63,4 +63,15 @@ public class User {
     public String getProfession() {
         return profession;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName=" + userName +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName=" + lastName +
+                ", profession=" + profession +
+                '}';
+    }
 }
