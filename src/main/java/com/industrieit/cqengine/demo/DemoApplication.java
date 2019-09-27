@@ -22,15 +22,15 @@ import static com.sun.tools.doclint.Entity.or;
 @SpringBootApplication
 public class DemoApplication {
 
-    static final int COLLECTION_SIZE = 100000;
-    static final int WARMUP_REPETITIONS = 10000;
-    static final int MEASUREMENT_REPETITIONS = 10000;
+    private static final int COLLECTION_SIZE = 10000000;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
         IndexedCollection<User> indexedUsers = new ConcurrentIndexedCollection<>();
         indexedUsers.addIndex(HashIndex.onAttribute(User.USER_NAME));
         indexedUsers.add(new User("andrewkkchan", "andrewchan@example.com", "Andrew", "Chan", "Accountant"));
+        indexedUsers.add(new User("andrewwong", "andrewong@example.com", "Andrew", "Wong", "Programmer"));
+
         ResultSet<User> accountants = indexedUsers.retrieve(equal(User.PROFESSION, "Accountant"));
         for (User user : accountants){
             System.out.println(user);
@@ -39,10 +39,9 @@ public class DemoApplication {
         IndexedCollection<Car> indexedCars = new ConcurrentIndexedCollection<>();
         indexedCars.addIndex(HashIndex.onAttribute(Car.COLOR));
         indexedCars.addAll(cars);
-        ResultSet<Car> redCars = indexedCars.retrieve(equal(Car.COLOR, Car.Color.RED));
-        for (Car car : redCars){
-            System.out.println(car);
-        }
+        ResultSet<Car> blackCars = indexedCars.retrieve(equal(Car.COLOR, Car.Color.BLACK));
+        System.out.println("We found number of black car : "+ blackCars.size());
+
     }
 
 }
