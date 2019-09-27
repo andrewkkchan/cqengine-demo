@@ -30,6 +30,8 @@ public class DemoApplication {
         indexedUsers.addIndex(HashIndex.onAttribute(User.USER_NAME));
         indexedUsers.add(new User("andrewkkchan", "andrewchan@example.com", "Andrew", "Chan", "Accountant"));
         indexedUsers.add(new User("andrewwong", "andrewong@example.com", "Andrew", "Wong", "Programmer"));
+        indexedUsers.add(new User("amywong", "amywong@example.com", "Amy", "Wong", "Accountant"));
+
 
         ResultSet<User> accountants = indexedUsers.retrieve(equal(User.PROFESSION, "Accountant"));
         for (User user : accountants){
