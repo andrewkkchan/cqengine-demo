@@ -31,12 +31,18 @@ public class DemoApplication {
         IndexedCollection<User> indexedUsers = new ConcurrentIndexedCollection<>();
         indexedUsers.addIndex(HashIndex.onAttribute(User.USER_NAME));
         indexedUsers.add(new User("andrewkkchan", "andrewchan@example.com", "Andrew", "Chan", "Accountant"));
-        ResultSet<User> accountant = indexedUsers.retrieve(equal(User.PROFESSION, "Accountant"));
-        for (User user : accountant){
+        ResultSet<User> accountants = indexedUsers.retrieve(equal(User.PROFESSION, "Accountant"));
+        for (User user : accountants){
             System.out.println(user);
         }
-        Collection<Car> collection = CarFactory.createCollectionOfCars(COLLECTION_SIZE);
-
+        Collection<Car> cars = CarFactory.createCollectionOfCars(COLLECTION_SIZE);
+        IndexedCollection<Car> indexedCars = new ConcurrentIndexedCollection<>();
+        indexedCars.addIndex(HashIndex.onAttribute(Car.COLOR));
+        indexedCars.addAll(cars);
+        ResultSet<Car> redCars = indexedCars.retrieve(equal(Car.COLOR, Car.Color.RED));
+        for (Car car : redCars){
+            System.out.println(car);
+        }
     }
 
 }
