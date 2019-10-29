@@ -35,7 +35,16 @@
             <artifactId>cqengine</artifactId>
             <version>3.4.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-client</artifactId>
+            <version>3.7.2</version>
+        </dependency>
     </dependencies>
 
     <build>
